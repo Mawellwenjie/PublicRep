@@ -1,0 +1,17 @@
+class Solution {
+    public int largestSumAfterKNegations(int[] A, int K) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        //优先队列，二叉树实现的小顶堆
+        for(int each : A) pq.add(each);
+
+        while(K-->0){
+            pq.add(-pq.poll());
+        }
+        
+        int sum = 0;
+        for(int i : pq){
+            sum+=i;
+        }
+        return sum;
+    }
+}

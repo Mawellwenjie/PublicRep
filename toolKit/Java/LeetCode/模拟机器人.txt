@@ -1,0 +1,32 @@
+class Solution {
+    public int robotSim(int[] commands, int[][] obstacles) {
+        int[][] directions = {{-1,0},{0,1},{1,0},{0,-1}};
+
+        Set<String> obs_set= new HashSet<>();
+        for(int[] obs : obstacles){
+            obs_set.add(obs[0]+" "+obs[1]);
+        }
+        int x=0,y=0,direction=1,maxDistance=0;
+        for(int cmd : commands){
+            if(cmd==-2){
+                direction--;
+                if(direction<0){
+                    direction+=4;
+                }
+            }else if(cmd==-1){
+                direction++;
+                direction %= 4;
+            }else{
+                int step = 0;
+                while((step<cmd) && (!obs_set.contains((x+directions[direction][0])+" "+(y+directions[direction][1])))){
+                    x+=directions[direction][0];
+                    y+=directions[direction][1];
+                    step++;
+                   
+                }
+            }
+            maxDistance = Math.max(maxDistance,x*x+y*y);
+        }
+        return maxDistance;            
+    }
+}

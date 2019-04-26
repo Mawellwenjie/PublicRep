@@ -1,0 +1,36 @@
+*栈思路:将每个字符串入栈，如果碰到'#'栈不为空则出栈
+class Solution {
+    public boolean backspaceCompare(String S, String T) {
+        String newS = resolve(S);
+        String newT = resolve(T);
+        return newS.equals(newT);
+    }
+    
+    public String resolve(String str){
+        Stack<Character> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        
+        int i = 0;
+        while(i<str.length()){
+            if(str.charAt(i) == '#'){
+                if(!stack.isEmpty()) stack.pop();
+            }else{
+                stack.push(str.charAt(i));
+            }
+            i++;
+        }
+        
+        while(!stack.isEmpty()){
+            sb.append(stack.pop());
+        }
+        
+        return sb.reverse().toString();
+    }
+}
+*StringBuilder(非线程安全的) 是一个可变的字符序列。它继承于AbstractStringBuilder，实现了CharSequence接口。
+
+*这里用到了方法的调用
+*类中方法1.静态方法 2.非静态方法  *属性 1.静态属性 2.非静态属性
+*静态方法是属于类的，即静态方法是随着类的加载而加载的。
+ 在加载类时，程序就会为静态方法分配内存，而非静态方法是属于对象的，对象是在类加载之后创建的，也就是说静态方法先于对象存在
+*静态方法不能调用非静态方法的原因：静态方法自然不能调用一个不存在的方法。创建一个对象时，程序为其在堆中分配内存，一般是通过this指针来指向该对象

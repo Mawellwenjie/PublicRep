@@ -1,0 +1,21 @@
+*Arrays.sort 排序思路
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] arrS = s.toCharArray();
+        char[] arrT = t.toCharArray();   
+        Arrays.sort(arrS);
+        Arrays.sort(arrT);   
+        return Arrays.equals(arrS , arrT);
+    }
+}
+ 
+*字符表数组思路 alphabet   **更快的一种思路是把判断放在第二次循环中
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int[] alphabet = new int[26];
+        for(int i = 0; i<s.length(); i++) alphabet[s.charAt(i)-'a']++;
+        for(int i = 0; i<s.length(); i++) alphabet[t.charAt(i)-'a']--; 
+        for(int i  : alphabet) if(i!=0) return false;
+        return true;
+    }
+}

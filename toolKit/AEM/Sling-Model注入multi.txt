@@ -1,0 +1,21 @@
+@Model(adaptables=Resource.class)
+public class InfoComponent {
+
+	@Inject @Default(values="abcd")
+    private String text;
+	
+	@Inject @Optional
+    public Resource info_multi;
+	//直接注入multifield
+	
+	public String getText() {
+		return text;
+	}
+	
+}
+
+*<div data-sly-list.head="${InfoComponent.info_multi.listChildren}">
+*     <h3>${head.multi_text}</h3>
+*     <h3>${head.multi_checkbox}</h3>
+*     <h3>${head.multi_path}</h3>
+*<div/>

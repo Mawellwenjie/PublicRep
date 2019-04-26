@@ -1,0 +1,31 @@
+<img id="image" src="C:\Users\Public\Pictures\Sample Pictures\hero-microstrategypoy_home_lg_v3.png" width="600" height="400" alt="Smiley face" ></p>
+<button onclick="switch_img()">切换图片</button>
+
+<script>
+	function $(id){
+		return document.getElementById(id);
+	}
+
+	function switch_img(){
+		var path = "file:///C:/Users/Public/Pictures/Sample Pictures/";
+		var arr = ['hero-microstrategypoy_home_lg_v3.png', 'hero-pd-banners-4.jpg', 'Lighthouse.jpg','Penguins.jpg'];
+		var src = decodeURI($("image").src);         //这里空格会变成%20 decodeURI
+		
+		switch(src){
+			case path+arr[0] :
+			console.log(src);
+				$("image").src = path+arr[1];
+				break;
+			case path+arr[1] :
+				$("image").src = path+arr[2];
+				break;	
+			case path+arr[2] :
+				$("image").src = path+arr[3];
+				break;
+			case path+arr[3] :
+				$("image").src = path+arr[0];
+				break;
+		}
+	}
+
+</script>

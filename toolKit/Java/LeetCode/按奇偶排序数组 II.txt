@@ -1,0 +1,24 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        int even = 0;
+        int odd = 1;
+        
+        while(even < A.length && odd < A.length){
+            if(A[even]%2 != 0){
+                swap(A, even, odd);
+                odd += 2;
+            }else{
+                even += 2;
+            }
+        }
+        return A;
+    }
+    
+    public void swap(int[] A, int even, int odd){
+        int temp = A[even];
+        A[even] = A[odd];
+        A[odd] = temp;
+    }
+}
+*swap交换数组中的元素
+*奇偶指针技巧，如果偶数指针的元素不为偶数(肯定为奇数)，就和奇数位交换(奇数指针+2)
